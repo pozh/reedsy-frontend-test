@@ -1,4 +1,9 @@
+body {
+  background-color: $body-bg;
+}
+
 .container {
+  width: 90%;
   margin: 0 auto;
 
   @include tablet {
