@@ -61,6 +61,11 @@
 .top-voted {
 }
 
+.top-voted {
+  margin-top: 1rem;
+
+}
+
 .books-list {
   @include tablet {
     column-count: 3;
@@ -68,5 +73,43 @@
   }
   img {
     max-width: 100%;
+  }
+}
+
+.book {
+  position: relative;
+  background: $light;
+  padding: $content-padding / 2;
+  border-radius: $radius;
+
+  .position {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    display: block;
+    width: 1.8rem;
+    height: 1.8rem;
+    line-height: 1.7rem;
+    text-align: center;
+    color: $yellow;
+    border: 2px solid $yellow;
+    border-radius: 1rem;
+  }
+
+  img {
+    width: 40%;
+
+  }
+}
+
+.book-info {
+  .title {
+    font-weight: bold;
+  }
+  .author {
+
+  }
+  .synopsis {
+    margin-top: 1rem;
   }
 }
