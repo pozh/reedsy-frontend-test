@@ -1,5 +1,29 @@
+html {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  font-weight: 400;
+}
+
 body {
   color: #333;
+  font-family: $font-family-base;
   font-size: $font-size-base;
   line-height: $line-height-base;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: $font-family-headings;
+}
+
+h1 {
+  font-size: $size-h1;
+}
+
+h2 {
+  font-size: $size-h2;
+}
+
+p {
+  margin: 0 0 1rem 0;
 }
