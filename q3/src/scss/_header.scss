@@ -1,0 +1,46 @@
+.top-actions {
+
+  .container {
+    display: flex;
+    height: $nav-height;
+    align-items: center;
+  }
+}
+
+.top-logo {
+  display: block;
+  background-color: $gray;
+  width: 11rem;
+  height: 2rem;
+  line-height: 2rem;
+  text-align: center;
+  border-radius: $radius;
+}
+
+.top-menu {
+  display: none;  // hide on mobile
+  margin-left: auto;
+  text-align: right;
+  font-size: $nav-font-size;
+
+  @include tablet {
+    display: block;
+  }
+
+  li {
+    display: inline;
+
+    &.active {
+      a {
+        background-color: $yellow;
+        color: $white;
+        border-radius: $nav-radius;
+      }
+    }
+  }
+
+  a {
+    display: inline-block;
+    padding: $nav-padding-y $nav-padding-x;
+  }
+}
