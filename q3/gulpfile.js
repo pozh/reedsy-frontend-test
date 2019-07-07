@@ -1,9 +1,13 @@
 'use strict';
 
 var cssOutputStyle = 'compressed';
-var stylesPath = 'scss';
-var stylesMain = 'scss/styles.scss';
-var stylesDest = 'css';
+var stylesPath = 'src/scss';
+var stylesMain = 'src/scss/styles.scss';
+var stylesDest = 'build/css';
+var htmlPath = 'src';
+var htmlDest = 'build';
+var imagePath = 'src/images';
+var imageDest = 'build/images';
 
 var gulp = require('gulp');
 var bsync = require('browser-sync');
@@ -35,17 +39,31 @@ gulp.task('styles', function () {
     .pipe(bsync.stream({match: "**/*.css"}));
 });
 
+// To be run only once,
+// we are not going to change html file
+gulp.task('html', function () {
+  return gulp.src(htmlPath+'/*.*')
+  .pipe(gulp.dest(htmlDest));
+});
+
+// To be run only once,
+// we are not going to change html file
+gulp.task('images', function () {
+  return gulp.src(imagePath+'/*.*')
+  .pipe(gulp.dest(imageDest));
+});
+
 gulp.task('browser-sync', function() {
   bsync({
     server: {
-      baseDir: './'
+      baseDir: './build/'
     },
     ghostMode: false,
     notify: false
   });
 });
 
-var build = gulp.parallel('styles',);
+var build = gulp.parallel('styles');
 gulp.task('build', build);
 
 gulp.task('watch', gulp.series('build', function() {
@@ -53,5 +71,5 @@ gulp.task('watch', gulp.series('build', function() {
 }));
 
 gulp.task('default',
-	gulp.series('build',
+	gulp.series('html', 'images', 'build',
 		gulp.parallel('watch', 'browser-sync')));
