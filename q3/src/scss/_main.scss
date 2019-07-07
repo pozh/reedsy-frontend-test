@@ -1,0 +1,50 @@
+.main {
+  .container {
+
+    @include desktop {
+      background-color: $white;
+      border-radius: $radius;
+      box-shadow: 0 3px 8px rgba(0,0,0,.2);
+      padding: $content-padding;
+    }
+  }
+}
+
+.featured-book {
+  background-color: $light;
+  margin-left: -$content-padding;
+  margin-right: -$content-padding;
+  padding: $content-padding;
+  position: relative;
+  @include clearfix;
+
+  img {
+    float: left;
+    margin-right: $content-padding;
+  }
+
+  .recommended {
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: $yellow;
+    color: $white;
+    font-size: $size-small;
+    padding: 2px 10px 3px;
+    border-bottom-left-radius: $radius;
+    box-shadow: 2px 0 2px rgba($yellow, .3);
+  }
+}
+
+.top-voted {
+}
+
+.books-list {
+  @include tablet {
+    column-count: 3;
+    column-gap: $content-padding;
+  }
+  img {
+    max-width: 100%;
+  }
+}
