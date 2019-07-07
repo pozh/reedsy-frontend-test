@@ -1,8 +1,10 @@
 .main {
   .container {
+    background: $white;
+    padding-top: $content-padding;
+    padding-bottom: $content-padding;
 
     @include desktop {
-      background-color: $white;
       border-radius: $radius;
       box-shadow: 0 3px 8px rgba(0,0,0,.2);
       padding: $content-padding;
@@ -12,15 +14,27 @@
 
 .featured-book {
   background-color: $light;
-  margin-left: -$content-padding;
-  margin-right: -$content-padding;
   padding: $content-padding;
+  margin: 1rem (-$content-padding) 0 (-$content-padding);
   position: relative;
   @include clearfix;
 
   img {
-    float: left;
-    margin-right: $content-padding;
+    border-radius: $radius;
+    box-shadow: 0 4px 7px rgba(0,0,0,.2);
+    margin: 1rem 0;
+    width: 100%;
+
+    @include tablet {
+      float: left;
+      width: auto;
+      margin: 0;
+      margin-right: $content-padding;
+    }
+
+    @include desktop {
+      max-width: 27%;
+    }
   }
 
   .recommended {

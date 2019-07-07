@@ -1,16 +1,28 @@
 body {
-  background-color: $body-bg;
+  padding-bottom: 5rem;
+  background: $white;
+
+  @include desktop {
+    background: $light;
+  }
 }
 
 .container {
-  width: 90%;
   margin: 0 auto;
 
+  @include mobile {
+    padding: 0 1rem;
+  }
+
   @include tablet {
-    width: 750px;
+    width: 740px;
   }
 
   @include desktop {
     width: 950px;
+  }
+
+  @include desktop-large {
+    width: 1050px;
   }
 }
