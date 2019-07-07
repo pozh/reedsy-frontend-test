@@ -1,0 +1,11 @@
+.container {
+  margin: 0 auto;
+
+  @include tablet {
+    width: 750px;
+  }
+
+  @include desktop {
+    width: 950px;
+  }
+}
