@@ -13,6 +13,7 @@
 }
 
 .featured-book {
+  @extend %light-shadow;
   background-color: $light;
   padding: $content-padding;
   margin: 1rem (-$content-padding) 0 (-$content-padding);
@@ -75,10 +76,15 @@
 }
 
 .book {
+  @extend %light-shadow;
   position: relative;
   background: $light;
   padding: 1rem;
   border-radius: $radius;
+
+  & + & {
+    margin-top: $content-padding;
+  }
 
   .position {
     position: absolute;
