@@ -1,0 +1,37 @@
+$light:                     #FAF9F4;
+$black:                     #222222;
+$dark:                      #292929;
+$gray:                      #CCCCCC;
+$yellow:                    #F1BE00;
+$white:                     #FFFFFF;
+
+$primary:                   $yellow;
+$text-color:                $dark;
+$header-color:              $black;
+
+
+// Layout
+$radius:                    5px;
+$radius-small:              4px;
+$content-padding:           1.5rem;
+
+
+// Typography
+$font-family-base:          "Lato", Helvetica, Arial, sans-serif;
+$font-family-headings:      "Open Sans", Helvetica, Arial, sans-serif;
+$font-size-base:            100%;
+$line-height-base:          1.4;
+$size-h1:                   2.5rem;
+$size-h2:                   1.7rem;
+$size-h3:                   1.4rem;
+$weight-h1:                 400;
+$weight-h2:                 800;
+$size-small:                .8125rem;
+
+
+// Navigation bar
+$nav-height:                4rem;
+$nav-font-size:             1rem;
+$nav-padding-x:             1.2rem;
+$nav-padding-y:             .5rem;
+$nav-radius:                $radius-small;

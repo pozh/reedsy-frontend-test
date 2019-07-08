@@ -1,0 +1,33 @@
+body {
+  background: $white;
+  padding-bottom: 3rem;
+
+  @include desktop {
+    padding-bottom: 5rem;
+    background: $light;
+  }
+}
+
+.container {
+  margin: 0 auto;
+
+  @include mobile {
+    padding: 0 1rem;
+  }
+
+  @include tablet {
+    width: 740px;
+  }
+
+  @include desktop {
+    width: 950px;
+  }
+
+  @include desktop-large {
+    width: 1050px;
+  }
+}
+
+%light-shadow {
+  box-shadow: 0 1px 4px rgba(0,0,0,.075);
+}
