@@ -67,9 +67,9 @@
   margin-top: $content-padding / 2;
 
   @include tablet {
-    column-count: 3;
-    column-gap: $content-padding;
+    display: flex;
   }
+
   img {
     max-width: 100%;
   }
@@ -82,8 +82,17 @@
   padding: 1rem;
   border-radius: $radius;
 
+  @include tablet {
+    flex: 1;
+  }
+
   & + & {
     margin-top: $content-padding;
+
+    @include tablet {
+      margin-top: 0;
+      margin-left: $content-padding;
+    }
   }
 
   .position {
