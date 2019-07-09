@@ -80,11 +80,11 @@ module.exports = {
     port: 8080,
     host: host,
     proxy: {
-      '/books**': {
+      '/books': {
         target: 'http://' + host + ':3000',
         secure: false,
       },
-      '/images**': {
+      '/images': {
         target: 'http://' + host + ':3000',
         secure: false,
       },
