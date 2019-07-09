@@ -10,17 +10,15 @@ const store = new Vuex.Store({
     book: {},
   },
 
-  getters: {
-    book: state => state.book,
-    books: state => state.books,
-  },
-
   mutations: {
     GET_BOOKS(state, records) {
       state.books = records;
     },
     GET_BOOK(state, record) {
       state.book = record;
+    },
+    RESET_BOOK(state, record) {
+      state.book = {};
     },
   },
 
@@ -34,10 +32,16 @@ const store = new Vuex.Store({
 
     async fetchBook({commit, dispatch}, slug) {
       const data = await get(`books/${slug}`);
-      if (data.book) {
-        commit("GET_BOOK", data.book);
+      if (data.status!=='error') {
+        commit("GET_BOOK", data);
+      } else {
+        log(data.message);
       }
     },
+
+    resetBook({commit, dispatch}) {
+      commit("RESET_BOOK");
+    }
   }
 });
 
