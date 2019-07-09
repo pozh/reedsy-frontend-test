@@ -1,31 +1,30 @@
-$light:                     #FAF9F4;
-$black:                     #222222;
-$dark:                      #292929;
+$light:                     #FAFAF3;
+$black:                     #292929;
+$dark:                      #555555;
 $gray:                      #CCCCCC;
-$yellow:                    #F1BE00;
+$yellow:                    #DDAA43;
+$yellow-light:              #eebd00;
+$yellow-dark:               #A97721;
 $white:                     #FFFFFF;
 
 $primary:                   $yellow;
-$text-color:                $dark;
-$header-color:              $black;
+$text-color:                $black;
 
 
 // Layout
-$radius:                    5px;
+$radius:                    9px;
 $radius-small:              4px;
-$content-padding:           1.5rem;
+$content-padding:           2.5rem;
 
 
 // Typography
 $font-family-base:          "Lato", Helvetica, Arial, sans-serif;
-$font-family-headings:      "Open Sans", Helvetica, Arial, sans-serif;
+$font-family-headings:      Arial, Helvetica, sans-serif;
 $font-size-base:            100%;
 $line-height-base:          1.4;
-$size-h1:                   2.5rem;
-$size-h2:                   1.7rem;
-$size-h3:                   1.4rem;
-$weight-h1:                 400;
-$weight-h2:                 800;
+$size-h1:                   3.5rem;
+$size-h2:                   2.5rem;
+$size-h3:                   1.8rem;
 $size-small:                .8125rem;
 
 

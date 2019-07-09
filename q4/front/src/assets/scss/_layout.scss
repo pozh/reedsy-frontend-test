@@ -1,11 +1,5 @@
 body {
-  background: $white;
-  padding-bottom: 3rem;
-
-  @include desktop {
-    padding-bottom: 5rem;
-    background: $light;
-  }
+  background: $light;
 }
 
 .container {
@@ -17,6 +11,7 @@ body {
 
   @include tablet {
     width: 740px;
+    box-shadow:  0 0 15px rgba(0,0,0,.2);
   }
 
   @include desktop {
@@ -26,8 +21,4 @@ body {
   @include desktop-large {
     width: 1050px;
   }
-}
-
-%light-shadow {
-  box-shadow: 0 1px 4px rgba(0,0,0,.075);
 }
