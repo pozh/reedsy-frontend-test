@@ -6,12 +6,12 @@
       <ul v-else>
         <li v-for="(book, index) in books" class="book" :key="book.slug">
           <div class="book__info">
-            <h3 class="book__title">
+            <h3 class="book__title" @click="handleBookClick(book.slug)">
               {{ index+1 }}. {{ book.title }}
               <span class="book__rating">({{ book.rating }}/10)</span>
             </h3>
             <p class="book__author">{{ book.author }}</p>
-            <p class="book__synopsis">{{ book.synopsis }}</p>
+            <p class="book__synopsis" v-html="synopsisFormat(book.synopsis)"></p>
             <p class="book__actions">
               <button type="button" class="btn" :disabled="book.upvoted">Upvote</button>
               <span> Upvoted {{ book.upvotes }} times</span>
@@ -28,12 +28,14 @@
 
 <script>
 import { mapState, mapActions } from 'vuex';
+import Book from './Book';
+import { linesToP } from './../utils';
 
 export default {
   name: "List",
   data () {
     return {
-      isLoading: true,
+      isLoading: false,
       page: 0,
     }
   },
@@ -41,13 +43,25 @@ export default {
     ...mapState(['books']),
   },
   created () {
-    this.isLoading = true;
-    const _this = this;
-    this.fetchBooks()
-    .then(()=>{_this.isLoading=false;});
+    if (!this.books || !this.books.length) {
+      this.isLoading = true;
+      const _this = this;
+      this.fetchBooks().then(()=>{
+        _this.isLoading = false;
+      });
+    }
   },
   methods: {
-    ...mapActions(['fetchBooks']),
+    ...mapActions(['fetchBooks', 'fetchBook']),
+
+    synopsisFormat(str) {
+      return linesToP(str);
+    },
+
+    handleBookClick(slug) {
+      log(`fetching book ${slug}`);
+      this.fetchBook(slug);
+    }
   }
 }
 </script>
@@ -89,11 +103,17 @@ export default {
     &__title {
       color: $yellow-dark;
       font-weight: 700;
+      cursor: pointer;
+
+      &:hover {
+        color: $yellow;
+      }
     }
 
     &__rating {
       color: $black;
-      font-size: .6em;
+      font-size: .75em;
+      font-weight: normal;
     }
 
     &__author {
