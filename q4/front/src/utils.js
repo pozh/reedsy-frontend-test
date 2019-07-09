@@ -16,3 +16,8 @@ export async function get(url) {
     };
   }
 }
+
+export function linesToP(str) {
+  return '<p>' + str.split('\n').join('</p><p>') + '</p>';
+}
+
