@@ -1,12 +1,17 @@
 <template>
   <div id="app">
-    <h1>Top Books of all time</h1>
+    <list />
   </div>
 </template>
 
 <script>
+import List from './views/List';
+
 export default {
   name: 'app',
+  components: {
+    List,
+  }
 }
 </script>
 
