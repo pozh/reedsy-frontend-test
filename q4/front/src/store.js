@@ -8,13 +8,11 @@ const store = new Vuex.Store({
   state: {
     books: [],
     book: {},
-    requests: 0,
   },
 
   getters: {
     book: state => state.book,
     books: state => state.books,
-    requests: state => state.requests,
   },
 
   mutations: {
@@ -29,19 +27,18 @@ const store = new Vuex.Store({
   actions: {
     async fetchBooks({commit, dispatch}) {
       const data = await get('books');
-      if (data.books === 'success') {
+      if (data.books && data.books.length) {
         commit("GET_BOOKS", data.books);
       }
     },
 
     async fetchBook({commit, dispatch}, slug) {
       const data = await get(`books/${slug}`);
-      if (data.status === 'success') {
+      if (data.book) {
         commit("GET_BOOK", data.book);
       }
     },
   }
-
 });
 
 export default store;
