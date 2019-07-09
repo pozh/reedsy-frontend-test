@@ -1,6 +1,9 @@
-var path = require('path');
-var webpack = require('webpack');
-var VueLoaderPlugin = require('vue-loader/lib/plugin');
+const os = require('os');
+const path = require('path');
+const webpack = require('webpack');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
+
+const host = os.hostname();
 
 module.exports = {
   entry: './src/main.js',
@@ -74,6 +77,18 @@ module.exports = {
     extensions: ['*', '.js', '.vue', '.json']
   },
   devServer: {
+    port: 8080,
+    host: host,
+    proxy: {
+      '/books**': {
+        target: 'http://' + host + ':3000',
+        secure: false,
+      },
+      '/images**': {
+        target: 'http://' + host + ':3000',
+        secure: false,
+      },
+    },
     historyApiFallback: true,
     noInfo: true,
     overlay: true
@@ -85,10 +100,10 @@ module.exports = {
   plugins: [
     new VueLoaderPlugin(),
   ],
-}
+};
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports.devtool = '#source-map'
+  module.exports.devtool = '#source-map';
   // http://vue-loader.vuejs.org/en/workflow/production.html
   module.exports.plugins = (module.exports.plugins || []).concat([
     new webpack.DefinePlugin({
