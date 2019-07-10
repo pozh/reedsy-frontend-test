@@ -18,7 +18,7 @@
             </p>
           </div>
           <div class="book__image">
-            <img :src="book.cover" alt="">
+            <img :src="book.cover" alt="" @click="handleBookClick(book.slug)">
           </div>
         </li>
       </ul>
@@ -99,6 +99,12 @@ export default {
       img {
         @include light-shadow;
         border-radius: $radius;
+        cursor: pointer;
+        transition: all .4s;
+
+        &:hover {
+          transform: scale(1.02, 1.02);
+        }
       }
     }
 
