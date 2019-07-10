@@ -3,11 +3,19 @@
     <h1 class="title">Top books of all time</h1>
     <div class="books">
       <p v-if="isLoading" class="text-center">Loading...</p>
-      <ul v-else>
-        <li v-for="(book, index) in books" class="book" :key="book.slug">
-          <list-book :book="book" :index="index" />
-        </li>
-      </ul>
+      <div v-else>
+        <ul>
+          <li v-for="(book, index) in pageBooks" class="book" :key="book.slug">
+            <list-book :book="book" :index="index+(page-1)*booksPerPage" />
+          </li>
+        </ul>
+        <pagination
+          v-if="booksPerPage < books.length"
+          :page="page"
+          :pages="Math.ceil(books.length / booksPerPage)"
+          @gotopage="(n)=>gotoPage(n)"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -15,20 +23,27 @@
 <script>
 import { mapState, mapActions } from 'vuex';
 import ListBook from "./components/ListBook";
+import Pagination from "./components/Pagination";
 
 export default {
   name: "List",
   components: {
+    Pagination,
     ListBook,
   },
   data () {
     return {
       isLoading: false,
-      page: 0,
+      page: 1,
+      booksPerPage: 3,
     }
   },
   computed: {
     ...mapState(['books']),
+    pageBooks: function() {
+      const start = (this.page-1)*this.booksPerPage;
+      return this.books.slice(start, start+this.booksPerPage);
+    },
   },
   created () {
     if (!this.books || !this.books.length) {
@@ -41,6 +56,15 @@ export default {
   },
   methods: {
     ...mapActions(['fetchBooks']),
+    nextPage() {
+      this.page++;
+    },
+    prevPage() {
+      this.page--;
+    },
+    gotoPage(pageNumber) {
+      this.page=pageNumber;
+    },
   }
 }
 </script>
