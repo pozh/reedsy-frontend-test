@@ -55,7 +55,9 @@ export default {
     ...mapActions(['fetchBooks', 'fetchBook']),
 
     synopsisFormat(str) {
-      return linesToP(str);
+      const limit = str.indexOf(' ', 200);
+      const strTruncated = str.slice(0, limit) + (str.length > limit ? '...' : '');
+      return linesToP(strTruncated);
     },
 
     handleBookClick(slug) {
