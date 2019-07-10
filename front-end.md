@@ -52,5 +52,7 @@ Please find the result in the q3 directory
 
 ## 4. SPA
 
-- run "npm i"
-- run "npm start"
+Please find the result in the q4 directory
+
+- run your server inside q4/server dir
+- inside q4/front dir run "npm i", then "npm start"
