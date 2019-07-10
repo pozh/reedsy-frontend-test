@@ -5,22 +5,7 @@
       <p v-if="isLoading" class="text-center">Loading...</p>
       <ul v-else>
         <li v-for="(book, index) in books" class="book" :key="book.slug">
-          <div class="book__info">
-            <h3 class="book__title" @click="handleBookClick(book.slug)">
-              {{ index+1 }}. {{ book.title }}
-              <span class="book__rating">({{ book.rating }}/10)</span>
-            </h3>
-            <p class="book__author">{{ book.author }}</p>
-            <p class="book__synopsis" v-html="synopsisFormat(book.synopsis)"></p>
-            <p class="book__actions">
-              <span v-if="book.upvoted" class="btn btn-done">Upvoted</span>
-              <button v-else type="button" class="btn">Upvote</button>
-              <span> Upvoted {{ book.upvotes }} times</span>
-            </p>
-          </div>
-          <div class="book__image">
-            <img :src="book.cover" alt="" @click="handleBookClick(book.slug)">
-          </div>
+          <list-book :book="book" :index="index" />
         </li>
       </ul>
     </div>
@@ -29,11 +14,13 @@
 
 <script>
 import { mapState, mapActions } from 'vuex';
-import Book from './Book';
-import { linesToP } from './../utils';
+import ListBook from "./components/ListBook";
 
 export default {
   name: "List",
+  components: {
+    ListBook,
+  },
   data () {
     return {
       isLoading: false,
@@ -53,18 +40,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['fetchBooks', 'fetchBook']),
-
-    synopsisFormat(str) {
-      const limit = str.indexOf(' ', 200);
-      const strTruncated = str.slice(0, limit) + (str.length > limit ? '...' : '');
-      return linesToP(strTruncated);
-    },
-
-    handleBookClick(slug) {
-      log(`fetching book ${slug}`);
-      this.fetchBook(slug);
-    }
+    ...mapActions(['fetchBooks']),
   }
 }
 </script>
@@ -81,61 +57,8 @@ export default {
   }
 
   .book {
-    padding: $content-padding;
-    display: flex;
-
     &:nth-of-type(odd) {
       background: $white;
-    }
-
-    &__info {
-      flex: 1;
-    }
-
-    &__image {
-      min-width: 20%;
-      margin-left: $content-padding;
-      flex: 0;
-
-      img {
-        @include light-shadow;
-        border-radius: $radius;
-        cursor: pointer;
-        transition: all .4s;
-
-        &:hover {
-          transform: scale(1.02, 1.02);
-        }
-      }
-    }
-
-    &__title {
-      color: $yellow-dark;
-      font-weight: 700;
-      cursor: pointer;
-
-      &:hover {
-        color: $yellow;
-      }
-    }
-
-    &__rating {
-      color: $black;
-      font-size: .75em;
-      font-weight: normal;
-    }
-
-    &__author {
-      color: $dark;
-      font-style: italic;
-    }
-
-    &__synopsis {
-      font-size: 1.2em;
-    }
-
-    .btn {
-      margin-right: .7rem;
     }
   }
 </style>
