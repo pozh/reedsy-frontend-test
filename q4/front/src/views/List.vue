@@ -51,6 +51,7 @@ export default {
     filteredBooks: function() {
       if (!this.search) return this.books;
       else {
+        this.gotoPage(1);
         const _search = this.search.toLowerCase();
         return this.books.filter(b=>(
           b.title.toLowerCase().indexOf(_search)>=0
