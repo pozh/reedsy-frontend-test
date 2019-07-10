@@ -19,23 +19,30 @@ export default {
     pages: {
       type: Number,
       required: true
-    }
+    },
+    page: {
+      type: Number,
+      required: true
+    },
   },
   data: ()=>{
     return {
-      page: 1,
+      internalPage: 1,
     }
+  },
+  mounted () {
+    this.internalPage = this.page;
   },
   methods: {
     gotoPage(pageNumber) {
       this.$emit('gotopage', pageNumber);
-      this.page = pageNumber;
+      this.internalPage = pageNumber;
     },
     nextPage() {
-      this.gotoPage(this.page+1);
+      this.gotoPage(this.internalPage+1);
     },
     prevPage() {
-      this.gotoPage(this.page-1);
+      this.gotoPage(this.internalPage-1);
     },
   }
 }

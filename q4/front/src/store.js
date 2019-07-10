@@ -7,6 +7,8 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
   state: {
     books: [],
+    page: 1,
+    booksPerPage: 3,
     book: {},
   },
 
@@ -19,6 +21,9 @@ const store = new Vuex.Store({
     },
     RESET_BOOK(state, record) {
       state.book = {};
+    },
+    SET_PAGE(state, page) {
+      state.page = page;
     },
   },
 
@@ -41,7 +46,12 @@ const store = new Vuex.Store({
 
     resetBook({commit, dispatch}) {
       commit("RESET_BOOK");
-    }
+    },
+
+    gotoPage({commit}, pageNumber) {
+      commit("SET_PAGE", pageNumber);
+    },
+
   }
 });
 

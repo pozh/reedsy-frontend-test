@@ -39,13 +39,11 @@ export default {
   data () {
     return {
       isLoading: false,
-      page: 1,
-      booksPerPage: 3,
       search: '',
     }
   },
   computed: {
-    ...mapState(['books']),
+    ...mapState(['books', 'page', 'booksPerPage']),
     pageBooks: function() {
       const start = (this.page-1)*this.booksPerPage;
       return this.filteredBooks.slice(start, start+this.booksPerPage);
@@ -71,16 +69,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['fetchBooks']),
-    nextPage() {
-      this.page++;
-    },
-    prevPage() {
-      this.page--;
-    },
-    gotoPage(pageNumber) {
-      this.page=pageNumber;
-    },
+    ...mapActions(['fetchBooks', 'gotoPage']),
   }
 }
 </script>
