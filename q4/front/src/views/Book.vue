@@ -8,7 +8,8 @@
         </div>
         <div class="head__actions">
           <span>Upvoted {{ book.upvotes }} times</span>
-          <button type="button" class="btn">Upvote</button>
+          <span v-if="book.upvoted" class="btn btn-done">Upvoted</span>
+          <button v-else type="button" class="btn">Upvote</button>
         </div>
       </div>
       <div class="cover">

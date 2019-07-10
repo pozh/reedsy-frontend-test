@@ -13,7 +13,8 @@
             <p class="book__author">{{ book.author }}</p>
             <p class="book__synopsis" v-html="synopsisFormat(book.synopsis)"></p>
             <p class="book__actions">
-              <button type="button" class="btn" :disabled="book.upvoted">Upvote</button>
+              <span v-if="book.upvoted" class="btn btn-done">Upvoted</span>
+              <button v-else type="button" class="btn">Upvote</button>
               <span> Upvoted {{ book.upvotes }} times</span>
             </p>
           </div>
@@ -131,6 +132,10 @@ export default {
 
     &__synopsis {
       font-size: 1.2em;
+    }
+
+    .btn {
+      margin-right: .7rem;
     }
   }
 </style>

@@ -2,15 +2,16 @@
   background: $yellow;
   border-radius: $radius;
   padding: .6rem 1.9rem;
-  border: 0 none;
+  border: 2px solid $yellow;
   color: $white;
   font-size: 1.2rem;
   outline: none !important;
   cursor: pointer;
-  transition: background-color .4s;
+  transition: background-color .4s, border .4s;
 
   &:hover {
     background: $yellow-light;
+    border-color: $yellow-light;
   }
 
   &:disabled {
@@ -19,4 +20,12 @@
     cursor: not-allowed;
   }
 
+  &-done,
+  &-done:hover{
+    display: inline-block;
+    background: $white;
+    border-color: $yellow;
+    color: $yellow;
+    cursor: default;
+  }
 }
